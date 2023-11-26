@@ -1,24 +1,50 @@
 <template>
     <div class="employeeItem">
-        <div class="content">
+        <div class="content" @click="modalStore.openModalForUpdate(employee, employeesStore)">
             <div class="indexCount">
-                9
+                {{ index + 1 }}
             </div>
-            <div class="employeeInfo">firstName</div>
-            <div class="employeeInfo">lastName</div>
-            <div class="employeeInfo">contact</div>
-
-
+            <div class="employeeInfo">{{ employee.first_name }}</div>
+            <div class="employeeInfo">{{ employee.last_name }}</div>
+            <div class="employeeInfo">{{ employee.contact_number }}</div>
+            <!-- display an icon if the employee has been changed -->
+            <div class="employeeInfo " v-tooltip.top="'You have not saved changes to this employee'"
+                v-if="employeesStore.updatedData && employeesStore.updatedData.id === employee.id"
+                :class="{ 'changedIcon': employeesStore.updatedData.id === employee.id }">
+                <i class="pi pi-exclamation-triangle" style="font-size: 1.5rem"></i>
+            </div>
 
         </div>
 
-        <div class="employeeInfo deleteIcon">
+        <div class="employeeInfo deleteIcon" @click="deleteItem(employee)">
             <i class="pi pi-trash" style="font-size: 1.5rem"></i>
         </div>
 
     </div>
 </template>
 
+<script setup>
+import { useEmployeesStore } from '@/stores/employeesStore';
+import { useModalStore } from '@/stores/modalStore';
+const modalStore = useModalStore();
+const employeesStore = useEmployeesStore();
+employeesStore.employeeData = JSON.parse(localStorage.getItem('employeeData'));
+let localStorageEmployeeData = JSON.parse(localStorage.getItem('employeeData'));
+
+const props = defineProps({
+    employee: {
+        type: Object,
+        required: true
+    },
+    index: Number,
+})
+
+const deleteItem = (employee) => {
+    employeesStore.deleteEmployee(employee.id)
+    localStorage.removeItem('employeeData');
+    employeesStore.employeeData = null
+}
+</script>
 
 <style scoped>
 .employeeItem {
