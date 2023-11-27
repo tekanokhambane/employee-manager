@@ -1,12 +1,31 @@
 <template>
-    <select name="filter">
+    <select v-model="selectedFilter">
         <option value="">Filter by</option>
         <option value="date_of_birth">Date of birth</option>
         <option value="skills">Skills</option>
     </select>
 </template>
 
+<script setup>
 
+import { computed } from 'vue';
+import { useEmployeesStore } from '@/stores/employeesStore';
+
+const employeesStore = useEmployeesStore();
+
+const selectedFilter = computed({
+    get() {
+        return employeesStore.selectedFilter
+    },
+    set(value) {
+        employeesStore.selectedFilter = value
+        if (value === 'skills') {
+            employeesStore.fetchSkills()
+        }
+    }
+})
+
+</script>
 
 <style scoped>
 /* the select input should be transparent and the gap between the dropdown and text should be 0 */
