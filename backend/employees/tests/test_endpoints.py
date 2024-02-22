@@ -283,6 +283,72 @@ class EmployeeAPITestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(Employee.objects.count(), 1)
 
+    def test_filter_by_skills(self):
+        employee = Employee.objects.create(
+            first_name="John",
+            last_name="Doe",
+            contact_number="1234567890",
+            street_address="123 Main Street",
+            city="New York",
+            postcode="1234",
+            country="US",
+            email="john.doe@example.com",
+            date_of_birth="1990-01-01",
+        )
+
+        Skill.objects.create(
+            name="Python", yrs_exp=5, seniority="Senior", employee=employee
+        )
+        Skill.objects.create(
+            name="JavaScript", yrs_exp=3, seniority="Mid", employee=employee
+        )
+        url = "/api/employees/?skills=Python"
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 1)
+
+        url = "/api/employees/?skills=JavaScript"
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 1)
+
+    def test_filter_by_invalid_skills(self):
+        url = "/api/employees/?skills=invalid"
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_filter_by_date_of_birth(self):
+        url = "/api/employees/?date_of_birth=1990-01-01"
+        employee1 = Employee.objects.create(
+            first_name="John",
+            last_name="Doe",
+            contact_number="1234567890",
+            street_address="123 Main Street",
+            city="New York",
+            postcode="1234",
+            country="US",
+            email="john.doe@example.com",
+            date_of_birth="1990-01-01",
+        )
+
+        employee2 = Employee.objects.create(
+            first_name="Jane",
+            last_name="Doe",
+            contact_number="1234567890",
+            street_address="123 Main Street",
+            city="New York",
+            postcode="1234",
+            country="US",
+            email="jane.doe@example.com",
+            date_of_birth="1990-01-01",
+        )
+
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 2)
+
 
 class SkillTestCase(APITestCase):
     def setUp(self):
