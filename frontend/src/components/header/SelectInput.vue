@@ -13,9 +13,20 @@ import { useEmployeesStore } from '@/stores/employeesStore'
 const employeesStore = useEmployeesStore()
 
 const selectedFilter = computed({
+  /**
+   * Get the selected filter from the employees store.
+   *
+   * @return {any} The selected filter
+   */
   get() {
     return employeesStore.selectedFilter
   },
+  /**
+   * Set the value of the selected filter and fetch skills if the value is 'skills'.
+   *
+   * @param {type} value - The new value for the selected filter
+   * @return {type} undefined
+   */
   set(value) {
     employeesStore.selectedFilter = value
     if (value === 'skills') {

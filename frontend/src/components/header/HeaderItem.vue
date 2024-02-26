@@ -22,11 +22,7 @@
           <div v-if="employeesStore.selectedFilter === 'skills'">
             <p>Select Skill</p>
             <div class="filterBySkills">
-              <v-select
-                v-model="selectedSkill"
-                label="name"
-                :options="employeesStore.skills"
-              ></v-select>
+              <v-select v-model="selectedSkill" label="name" :options="employeesStore.skills"></v-select>
             </div>
           </div>
         </div>
@@ -50,9 +46,20 @@ const modalStore = useModalStore()
 const employeesStore = useEmployeesStore()
 
 const selectedSkill = computed({
+  /**
+   * Retrieve the selected skill from the employees store.
+   *
+   * @return {type} The selected skill
+   */
   get() {
     return employeesStore.selectedSkill
   },
+  /**
+   * Set the value of the selected skill and filter employees accordingly.
+   *
+   * @param {type} value - the new value for the selected skill
+   * @return {type} description of return value
+   */
   set(value) {
     employeesStore.selectedSkill = value
     if (value) {
@@ -68,9 +75,20 @@ const selectedSkill = computed({
 })
 
 const selectedDate = computed({
+  /**
+   * Retrieves the selected date from the employees store.
+   *
+   * @return {type} the selected date
+   */
   get() {
     return employeesStore.selectedDate
   },
+  /**
+   * Set the selected date in the employeesStore and fetches the employees based on the selected date.
+   *
+   * @param {type} value - The value to set as the selected date
+   * @return {type} void
+   */
   set(value) {
     employeesStore.selectedDate = value
     if (value) {

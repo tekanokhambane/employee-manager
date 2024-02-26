@@ -2,13 +2,14 @@ import { computed } from 'vue'
 import axios from 'axios'
 import { validatePhoneNumber } from '@/utils/validation'
 
-export const createComputedProperty = (property, employeesStore, modalStore) => {
-  /**
+/**
    * Creates a computed property based on the provided property.
    *
    * @param {string} property - The property to create a computed property for
    * @return {object} The computed property object
    */
+export const createComputedProperty = (property, employeesStore, modalStore) => {
+
   return computed({
     get: () =>
       modalStore.isUpdatingEmployee
@@ -42,6 +43,13 @@ export const createComputedProperty = (property, employeesStore, modalStore) => 
   })
 }
 
+/**
+ * Check if the email exists and update the employeesStore message accordingly.
+ *
+ * @param {string} email - The email to be checked
+ * @param {object} employeesStore - The store for employee information
+ * @return {void}
+ */
 export const checkEmailExists = (email, employeesStore) => {
   if (email.length > 3) {
     axios.post(`/api/check-email/${email}/`).then((response) => {
