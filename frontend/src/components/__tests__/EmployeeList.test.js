@@ -21,7 +21,7 @@ describe('EmployeeList.vue Test', () => {
                 plugins: [createPinia()]
             }
         })
-        expect(wrapper.findComponent(EmployeeItemVue)).toBeTruthy()
+        expect(wrapper.findComponent(EmployeeItemVue)).toBeTruthy();
     })
 
     it('should render child components', () => {

@@ -26,6 +26,7 @@ export const useModalStore = defineStore('modal', {
      * @return {void} 
      */
     openModalForCreate(employeesStore) {
+      if (employeesStore === undefined) return
       this.isModalOpen = true
       this.isUpdatingEmployee = false
       this.employeeId = null
@@ -55,6 +56,7 @@ export const useModalStore = defineStore('modal', {
      * @return {void} 
      */
     openModalForUpdate(employeeData, employeesStore) {
+      if (employeeData === undefined) return
       this.isUpdatingEmployee = true
       const localStorageEmployeeData = JSON.parse(localStorage.getItem('employeeData'))
 
@@ -91,9 +93,13 @@ export const useModalStore = defineStore('modal', {
         employeesStore.dataChanged = false
         employeesStore.updatedData = null
         employeesStore.message = null
+        this.resetEmployeeData()
+
+      } else {
+
+        this.resetEmployeeData()
       }
-      this.resetEmployeeData()
-      this.isModalOpen = false
+      // this.isModalOpen = false
     },
     /**
      * Closes the modal without triggering a page refresh.
@@ -119,9 +125,10 @@ export const useModalStore = defineStore('modal', {
       this.isUpdatingEmployee = false
       this.employeeId = null
       this.employeeData = null
+      this.isModalOpen = false
       localStorage.removeItem('employeeData')
       localStorage.removeItem('updatedData')
-      localStorage.setItem('dataChanged', 'false')
+      localStorage.setItem('dataChanged', JSON.stringify('false'))
     }
   }
 })
