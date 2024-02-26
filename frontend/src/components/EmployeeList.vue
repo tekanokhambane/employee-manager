@@ -7,14 +7,23 @@
         <EmployeeItem v-for="(employee, index) in employeesStore.employees" :key="employee.id" :employee="employee"
             :index="index" />
 
+        <div class="noItems" v-if="employeesStore.employees.length === 0">
+            <img src="../assets/Icon.JPG" alt="No Items" />
+            <h2>There is nothing here</h2>
+            <p>Create a new employee by clicking the
+                <span>New Employee</span> button to get started
+            </p>
+        </div>
     </div>
 </template>
 
 <script setup>
+import { useModalStore } from '@/stores/modalStore';
 import EmployeeItem from './EmployeeItem.vue'
 import { useEmployeesStore } from '@/stores/employeesStore';
 import { onMounted } from 'vue';
 
+const modalStore = useModalStore();
 const employeesStore = useEmployeesStore();
 let employeeChanged = false
 
@@ -58,5 +67,36 @@ onMounted(() => {
     margin-top: 20px;
     color: white;
 
+}
+
+.noItems {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    width: 100%;
+    min-height: 500px;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    margin-top: 20px;
+    color: white;
+}
+
+.noItems img {
+    width: 200px;
+}
+
+.noItems h2 {
+    font-size: 28px
+}
+
+.noItems p {
+    font-size: 18px
+}
+
+.noItems span {
+    font-weight: 600;
+    font-size: 18px
 }
 </style>
