@@ -27,6 +27,17 @@ class Employee(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def generate_id(self):
+        """
+        Generates a unique identifier for the employee.
+
+        Returns:
+            str: A string representing the unique identifier for the employee.
+
+        Example:
+            >>> employee = Employee()
+            >>> employee.generate_id()
+            'AB1234'
+        """
         # the id is composed of two random letters and two random numbers
         letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         numbers = "0123456789"
@@ -51,6 +62,26 @@ class Employee(models.Model):
 
 
 class Skill(models.Model):
+    """
+    A class representing a Skill.
+
+    Attributes:
+        name (str): The name of the skill.
+        employee (Employee): The employee associated with the skill.
+        yrs_exp (int): The number of years of experience in the skill.
+        seniority (str): The seniority level of the skill.
+        created_at (datetime): The date and time when the skill was created.
+        updated_at (datetime): The date and time when the skill was last updated.
+
+    Meta:
+        ordering (list): The default ordering of skills based on the name.
+        unique_together (tuple): A tuple specifying that the combination of name and employee should be unique.
+
+    Methods:
+        __str__(): Returns a string representation of the skill.
+
+    """
+
     name = models.CharField(max_length=100)
     employee = models.ForeignKey(
         "Employee", on_delete=models.CASCADE, related_name="skills"
