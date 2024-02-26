@@ -1,403 +1,395 @@
 .modalItem {
-    visibility: hidden;
-    /* translate modal to the bottom of the screen */
-    translate: 100%;
-    transition: all 0.5s ease-in-out;
-    opacity: 0;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    margin-bottom: 0;
-    padding-bottom: 0;
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    z-index: 1000;
+  visibility: hidden;
+  /* translate modal to the bottom of the screen */
+  translate: 100%;
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1000;
 }
 
 .visible {
-    display: flex;
-    translate: 0 0;
-    opacity: 1;
-    display: flex;
-    visibility: visible;
-    /* or any other desired display value */
-    /* Add other styling for visibility and positioning */
+  display: flex;
+  translate: 0 0;
+  opacity: 1;
+  display: flex;
+  visibility: visible;
+  /* or any other desired display value */
+  /* Add other styling for visibility and positioning */
 }
 
 .modalContent {
-    width: 550px;
-    height: 600px;
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(25, 3, 46);
-    border-radius: 20px;
-    padding: 1rem;
-    position: relative;
-    overflow: auto;
-    overflow-x: hidden;
+  width: 550px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(25, 3, 46);
+  border-radius: 20px;
+  padding: 1rem;
+  position: relative;
+  overflow: auto;
+  overflow-x: hidden;
 }
 
 .heading {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 600px;
-    position: sticky;
-    translate: 0 -20px;
-    top: 0;
-    left: 0;
-    padding: 1rem 2rem;
-    background-color: rgb(25, 3, 46);
-    border-radius: 20px 20px 0 0;
-
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 600px;
+  position: sticky;
+  translate: 0 -20px;
+  top: 0;
+  left: 0;
+  padding: 1rem 2rem;
+  background-color: rgb(25, 3, 46);
+  border-radius: 20px 20px 0 0;
 }
 
 .heading h1 {
-    color: white;
+  color: white;
 }
 
 .heading button {
-    background-color: white;
-    border: none;
-    border-radius: 50px;
-    padding: 5px 10px;
-    color: black;
-    cursor: pointer;
-    margin-right: 100px;
+  background-color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 5px 10px;
+  color: black;
+  cursor: pointer;
+  margin-right: 100px;
 }
 
 .titleInfo {
-    display: flex;
-    align-items: start;
-    justify-content: flex-start;
-    width: 100%;
-    padding: 1rem 2rem;
-    gap: 1rem;
-    color: rgb(112, 6, 212);
+  display: flex;
+  align-items: start;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 1rem 2rem;
+  gap: 1rem;
+  color: rgb(112, 6, 212);
 }
 
 .title {
-    color: white;
+  color: white;
 }
 
 .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(3, 75, 69, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(3, 75, 69, 0.5);
 }
 
 .nameInfo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    gap: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 1rem;
 }
 
-
 .nameInfo label {
-    color: white;
+  color: white;
 }
 
 .nameInfo input {
-    width: 200px;
-    height: 30px;
-    padding: 10px;
-    border: 1px solid rgb(25, 3, 46);
-    border-radius: 5px;
-    color: white;
-    background-color: rgb(179, 176, 176);
-    outline: none;
+  width: 200px;
+  height: 30px;
+  padding: 10px;
+  border: 1px solid rgb(25, 3, 46);
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(179, 176, 176);
+  outline: none;
 }
 
 .nameInfo input:focus {
-    border: 1px solid white;
-    background-color: rgb(179, 176, 176);
-    color: white;
+  border: 1px solid white;
+  background-color: rgb(179, 176, 176);
+  color: white;
 }
 
 .nameInfo input::placeholder {
-    color: white;
+  color: white;
 }
 
 .formContent {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
 
-    gap: 1rem;
+  gap: 1rem;
 }
 
-
-
 .contactInfo {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: flex-start;
-    width: 100%;
-    padding: 1rem 2rem;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 1rem 2rem;
+  gap: 1rem;
 }
 
 .contactInfo label {
-    color: white;
+  color: white;
 }
 
 .contactInfo input {
-    width: 400px;
-    height: 30px;
-    padding: 10px;
-    border: 1px solid rgb(25, 3, 46);
-    border-radius: 5px;
-    color: white;
-    background-color: rgb(179, 176, 176);
-    outline: none;
+  width: 400px;
+  height: 30px;
+  padding: 10px;
+  border: 1px solid rgb(25, 3, 46);
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(179, 176, 176);
+  outline: none;
 }
 
 .contactInfo input:focus {
-    border: 1px solid white;
-    background-color: rgb(179, 176, 176);
-    color: white;
+  border: 1px solid white;
+  background-color: rgb(179, 176, 176);
+  color: white;
 }
 
 .contactInfo input::placeholder {
-    color: white;
+  color: white;
 }
 
 .emailAddress {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: flex-start;
-    width: 100%;
-    padding: 1rem 2rem;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 1rem 2rem;
+  gap: 1rem;
 }
 
 .emailAddress label {
-    color: white;
+  color: white;
 }
 
 .emailAddress input {
-    width: 400px;
-    height: 30px;
-    padding: 10px;
-    border: 1px solid rgb(25, 3, 46);
-    border-radius: 5px;
-    color: white;
-    background-color: rgb(179, 176, 176);
-    outline: none;
+  width: 400px;
+  height: 30px;
+  padding: 10px;
+  border: 1px solid rgb(25, 3, 46);
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(179, 176, 176);
+  outline: none;
 }
 
 .emailAddress input:focus {
-    border: 1px solid white;
-    background-color: rgb(179, 176, 176);
-    color: white;
+  border: 1px solid white;
+  background-color: rgb(179, 176, 176);
+  color: white;
 }
 
 .emailAddress input::placeholder {
-    color: white;
+  color: white;
 }
 
 .dateOfBirth {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: flex-start;
-    width: 100%;
-    padding: 1rem 2rem;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 1rem 2rem;
+  gap: 1rem;
 }
 
 .dateOfBirth label {
-    color: white;
+  color: white;
 }
 
 .dateOfBirth input {
-    width: 400px;
-    height: 30px;
-    padding: 10px;
-    border: 1px solid rgb(25, 3, 46);
-    border-radius: 5px;
-    color: white;
-    background-color: rgb(179, 176, 176);
-    outline: none;
+  width: 400px;
+  height: 30px;
+  padding: 10px;
+  border: 1px solid rgb(25, 3, 46);
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(179, 176, 176);
+  outline: none;
 }
 
 .dateOfBirth input:focus {
-    border: 1px solid white;
-    background-color: rgb(179, 176, 176);
-    color: white;
+  border: 1px solid white;
+  background-color: rgb(179, 176, 176);
+  color: white;
 }
 
 .dateOfBirth input::placeholder {
-    color: white;
+  color: white;
 }
 
 .addressInfo .streetAddress {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: flex-start;
-    width: 100%;
-    padding: 1rem 2rem;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 1rem 2rem;
+  gap: 1rem;
 }
 
 .addressInfo label {
-    color: white;
+  color: white;
 }
 
 .addressInfo .addressInput {
-    width: 400px;
-    height: 30px;
-    padding: 10px;
-    border: 1px solid rgb(25, 3, 46);
-    border-radius: 5px;
-    color: white;
-    background-color: rgb(179, 176, 176);
-    outline: none;
+  width: 400px;
+  height: 30px;
+  padding: 10px;
+  border: 1px solid rgb(25, 3, 46);
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(179, 176, 176);
+  outline: none;
 }
 
 .addressInfo .addressInput:focus {
-    border: 1px solid white;
-    background-color: rgb(179, 176, 176);
-    color: white;
+  border: 1px solid white;
+  background-color: rgb(179, 176, 176);
+  color: white;
 }
 
 .addressInfo .addressInput::placeholder {
-    color: white;
+  color: white;
 }
 
 .addressInfo .address {
-    display: flex;
-    flex-direction: row;
-    align-items: start;
-    justify-content: flex-start;
-    width: 100%;
-    gap: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 0;
 }
 
 .addressInfo .address .city,
 .addressInfo .address .postcode,
 .addressInfo .address .country {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: flex-start;
-    /* width: 100px; */
-    padding: 1rem 1.5rem;
-    gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+  /* width: 100px; */
+  padding: 1rem 1.5rem;
+  gap: 0.5rem;
 }
 
 .addressInfo .address .countryFilter {
-    width: 200px;
-    background-color: rgb(179, 176, 176);
-    border-radius: 5px;
+  width: 200px;
+  background-color: rgb(179, 176, 176);
+  border-radius: 5px;
 }
 
-
-
 .addressInfo label {
-    color: white;
+  color: white;
 }
 
 .addressInfo .addressInput {
-    /* width: 400px; */
-    height: 30px;
-    padding: 10px;
-    border: 1px solid rgb(25, 3, 46);
-    border-radius: 5px;
-    color: white;
-    background-color: rgb(179, 176, 176);
-    outline: none;
+  /* width: 400px; */
+  height: 30px;
+  padding: 10px;
+  border: 1px solid rgb(25, 3, 46);
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(179, 176, 176);
+  outline: none;
 }
 
 .addressInfo .address .addressInput {
-    width: 100px;
-    height: 30px;
-    padding: 10px;
-    border: 1px solid rgb(25, 3, 46);
-    border-radius: 5px;
-    color: white;
-    background-color: rgb(179, 176, 176);
-    outline: none;
+  width: 100px;
+  height: 30px;
+  padding: 10px;
+  border: 1px solid rgb(25, 3, 46);
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(179, 176, 176);
+  outline: none;
 }
 
 .addressInfo input:focus {
-    border: 1px solid white;
-    background-color: rgb(179, 176, 176);
-    color: white;
+  border: 1px solid white;
+  background-color: rgb(179, 176, 176);
+  color: white;
 }
 
 .addressInfo input::placeholder {
-    color: white;
+  color: white;
 }
 
 .skills {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: flex-start;
-    width: 100%;
-    padding: 1rem 2rem;
-    gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 1rem 2rem;
+  gap: 1.5rem;
 }
 
 .addSkill {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 30px;
-    margin-bottom: 2rem;
-    /* padding: 20px 20px; */
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 30px;
+  margin-bottom: 2rem;
+  /* padding: 20px 20px; */
 }
 
-
 .modalFooter {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-    width: 100%;
-    padding: 1rem 2rem;
-    gap: 1rem;
-    position: sticky;
-    bottom: 0;
-    /* transalte footer to the bottom */
-    translate: 0 20px;
-    z-index: 1;
-    border-top: 1px solid rgb(25, 3, 46);
-    border-radius: 0px 0px 10px 10px;
-    color: white;
-    background: rgb(25, 3, 46);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 1rem 2rem;
+  gap: 1rem;
+  position: sticky;
+  bottom: 0;
+  /* transalte footer to the bottom */
+  translate: 0 20px;
+  z-index: 1;
+  border-top: 1px solid rgb(25, 3, 46);
+  border-radius: 0px 0px 10px 10px;
+  color: white;
+  background: rgb(25, 3, 46);
 }
 
 .modalFooter button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    height: 30px;
-    padding: 20px 20px;
-    margin-right: 30px;
-    border: 1px solid rgb(25, 3, 46);
-    border-radius: 50px;
-    color: white;
-    background-color: rgb(179, 176, 176);
-    cursor: default;
-    outline: none;
+  height: 30px;
+  padding: 20px 20px;
+  margin-right: 30px;
+  border: 1px solid rgb(25, 3, 46);
+  border-radius: 50px;
+  color: white;
+  background-color: rgb(179, 176, 176);
+  cursor: default;
+  outline: none;
 }
 
 /* .modalFooter button:hover {
@@ -407,26 +399,24 @@
 } */
 
 .modalFooter .enableButton {
-    background-color: rgb(43, 7, 77);
-    cursor: pointer;
-    border: 1px solid white;
+  background-color: rgb(43, 7, 77);
+  cursor: pointer;
+  border: 1px solid white;
 }
 
 .modalFooter .cancelButton {
-    background-color: brown;
-
+  background-color: brown;
 }
 
 .modalFooter .cancelButton:hover {
-    background-color: white;
-    cursor: pointer;
-    border: 1px solid brown;
-    color: brown;
+  background-color: white;
+  cursor: pointer;
+  border: 1px solid brown;
+  color: brown;
 }
 
-
 .error {
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
 }

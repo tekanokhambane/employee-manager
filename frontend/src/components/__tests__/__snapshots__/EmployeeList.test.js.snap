@@ -1,0 +1,21 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`EmployeeList.vue Test > should render correctly 1`] = `
+"<!--v-if-->
+<div data-v-d6d1597d="" class="employeeList">
+  <div data-v-d6d1597d="" class="noItems"><img data-v-d6d1597d="" src="/src/assets/Icon.JPG" alt="No Items">
+    <h2 data-v-d6d1597d="">There is nothing here</h2>
+    <p data-v-d6d1597d="">Create a new employee by clicking the <span data-v-d6d1597d="">New Employee</span> button to get started</p>
+  </div>
+</div>"
+`;
+
+exports[`EmployeeList.vue Test > should render correctly 2`] = `
+"<!--v-if-->
+<div data-v-d6d1597d="" class="employeeList">
+  <div data-v-d6d1597d="" class="noItems"><img data-v-d6d1597d="" src="/src/assets/Icon.JPG" alt="No Items">
+    <h2 data-v-d6d1597d="">There is nothing here</h2>
+    <p data-v-d6d1597d="">Create a new employee by clicking the <span data-v-d6d1597d="">New Employee</span> button to get started</p>
+  </div>
+</div>"
+`;
