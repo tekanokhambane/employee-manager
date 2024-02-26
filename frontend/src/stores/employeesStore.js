@@ -40,22 +40,22 @@ export const useEmployeesStore = defineStore('employees', {
                     this.employees = response.data;
                 });
         },
-        createEmployee(employeesStore, skills, modalStore) {
+        createEmployee(employeesStore, modalStore) {
             axios.post(`/api/employees/`, employeesStore.newEmployee)
                 .then(response => {
-                    skills.value.forEach(skill => {
+                    employeesStore.newEmployee.skills.forEach(skill => {
                         this.createSkill(response.data.id, skill);
                     })
                 }).then(() => {
                     this.dataChanged = false
                     modalStore.closeModal();
                     employeesStore.fetchEmployees();
-                    skills.value = [];
+
                     employeesStore.message = null;
                 })
                 .catch(error => {
                     if (error) {
-                        console.log(error.response.data);
+
                         this.message = error.response.data;
 
                     }
@@ -66,7 +66,7 @@ export const useEmployeesStore = defineStore('employees', {
         updateEmployee(employeeData, skills, modalStore) {
             axios.put(`/api/employees/${employeeData.id}/`, employeeData)
                 .then((response) => {
-                    skills.value.forEach(skill => {
+                    employeeData.skills.forEach(skill => {
                         if (!skill.id) {
                             if (skill.yrs_exp && skill.seniority && skill.name) {
                                 this.createSkill(response.data.id, skill);
@@ -81,7 +81,7 @@ export const useEmployeesStore = defineStore('employees', {
                 }).finally(() => {
                     modalStore.closeModal();
                     modalStore.employeeData = null;
-                    skills.value = [];
+
                     this.dataChanged = false
                     this.updatedData = null
                     this.fetchEmployees();
@@ -158,7 +158,8 @@ export const useEmployeesStore = defineStore('employees', {
         fetchSkills() {
             axios.get('/api/skills/')
                 .then((response) => {
-                    this.skills = response.data;
+
+                    this.skills = [...new Map(response.data.map(item => [item.name, item])).values()];
                 });
         },
     },

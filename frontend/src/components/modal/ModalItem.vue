@@ -1,5 +1,5 @@
 <template>
-    <div :key="modalStore.isModalOpen" class="modalItem modal" :class="{ 'visible': modalStore.isModalOpen }">
+    <div :key="components" class="modalItem modal" :class="{ 'visible': modalStore.isModalOpen }">
         <div class="overlay"></div>
         <div class="modalContent">
             <div class="heading">
@@ -108,8 +108,17 @@
                         employeesStore.message.skills[0] :
                         '' }}</span>
 
-                    <SkillComponent @remove-skill="removeSkill" v-for="(skill, index) in skills" :key="skill.index"
-                        :skill="skill" :index="index" />
+                    <div v-if="modalStore.employeeData">
+                        <SkillComponent @remove-skill="removeSkill" v-for="(skill, index) in modalStore.employeeData.skills"
+                            :key="skill.index" :skill="skill" :index="index" />
+
+                    </div>
+                    <div v-if="employeesStore.newEmployee">
+                        <SkillComponent @remove-skill="removeSkill"
+                            v-for="(skill, index) in employeesStore.newEmployee.skills" :key="skill.index" :skill="skill"
+                            :index="index" />
+
+                    </div>
 
                 </div>
                 <div class="addSkill">
@@ -120,7 +129,7 @@
                         v-if="modalStore.employeeData && employeesStore.updatedData && employeesStore.updatedData.id === modalStore.employeeData.id"
                         type="button" class="cancelButton" @click="cancel">Cancel</button>
                     <button
-                        :class="{ 'enableButton': firstNameVModel && lastNameVModel && contactVModel && emailAddressVModel && dateOfBirthVModel && streetAddressVModel && cityVModel && postcodeVModel && countryVModel && skills.length > 0 }">{{
+                        :class="{ 'enableButton': firstNameVModel && lastNameVModel && contactVModel && emailAddressVModel && dateOfBirthVModel && streetAddressVModel && cityVModel && postcodeVModel && countryVModel }">{{
                             saveButtonText }}</button>
                 </div>
             </form>
@@ -163,45 +172,6 @@ const loadOptions = computed(() => {
 })
 
 
-const reRender = () => {
-    components.value = !components.value
-}
-
-// Initialize skills based on whether it's updating an existing employee or adding a new one
-const initializeSkills = () => {
-    if (modalStore.isUpdatingEmployee) {
-
-        skills.value = [...modalStore.employeeData.skills];
-        reRender();
-
-    } else if (!modalStore.isUpdatingEmployee && skills.value.length === 0) {
-        modalStore.employeeData = null
-
-        skills.value.push({ index: 0, name: null, yrs_exp: null, seniority: null, employee: null, id: null });
-    }
-    reRender();
-
-};
-
-watch(skills, () => {
-    if (skills.value.length === 1 || skills.value[0].name === null) {
-
-        initializeSkills()
-    }
-
-})
-if (skills.value.length === 0) {
-
-    initializeSkills()
-};
-
-onMounted(() => {
-    initializeSkills();
-})
-
-initializeSkills();
-
-
 const firstNameVModel = createComputedProperty('first_name', employeesStore, modalStore);
 const lastNameVModel = createComputedProperty('last_name', employeesStore, modalStore);
 const contactVModel = createComputedProperty('contact_number', employeesStore, modalStore);
@@ -223,12 +193,23 @@ watch(contactVModel, (newVal) => {
 });
 
 
-
-
 const addNewSkill = () => {
 
-    console.log(skills)
-    skills.value.push({ index: skills.value.length, name: '', yrs_exp: '', seniority: '' });
+    if (modalStore.isUpdatingEmployee) {
+        localStorage.setItem('employeeData', JSON.stringify(modalStore.employeeData));
+        localStorage.setItem('dataChanged', true);
+        employeesStore.dataChanged = true;
+        modalStore.employeeData = JSON.parse(localStorage.getItem('employeeData'));
+        employeesStore.updatedData = modalStore.employeeData;
+        employeesStore.updatedData.skills.push({ index: employeesStore.newEmployee.skills.length, name: '', yrs_exp: '', seniority: '' });
+        localStorage.setItem('updatedData', JSON.stringify(employeesStore.updatedData));
+    } else {
+        employeesStore.newEmployee.skills.push({ index: skills.value.length, name: '', yrs_exp: '', seniority: '' });
+        console.log(employeesStore.newEmployee)
+
+    }
+
+
 };
 
 const closeModal = () => {
@@ -268,13 +249,11 @@ const onSubmit = () => {
     /**
      * Function for handling form submission. It sends a POST request to create a new employee if not updating, or a PUT request to update an existing employee if updating.
      */
-    if (firstNameVModel && lastNameVModel && contactVModel && emailAddressVModel && dateOfBirthVModel && streetAddressVModel && cityVModel && postcodeVModel && countryVModel && skills.value.length > 0) {
+    if (firstNameVModel && lastNameVModel && contactVModel && emailAddressVModel && dateOfBirthVModel && streetAddressVModel && cityVModel && postcodeVModel && countryVModel) {
         if (!modalStore.isUpdatingEmployee) {
-            console.log(employeesStore.newEmployee)
-
-            employeesStore.createEmployee(employeesStore, skills, modalStore);
+            employeesStore.createEmployee(employeesStore, modalStore)
         } else {
-            employeesStore.updateEmployee(modalStore.employeeData, skills, modalStore);
+            employeesStore.updateEmployee(modalStore.employeeData, modalStore);
         }
     }
 };
